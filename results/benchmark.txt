@@ -1,0 +1,53 @@
+track-fusion benchmark, 5 seeds per cell
+
+## IMM vs a single motion model (manoeuvring target, no association difficulty)
+
+| filter             | OSPA  | OSPA loc | RMSE m | coverage |
+|--------------------|-------|----------|--------|----------|
+| single CV filter   | 39.75 | 26.92    | 30.3   | 0.893    |
+| IMM (CV + 2 turns) | 36.57 | 14.40    | 18.6   | 0.960    |
+
+## IMM advantage vs turn rate
+
+| turn deg/s | single CV | IMM   | OSPA change |
+|------------|-----------|-------|-------------|
+| 0          | 21.59     | 31.42 | -45.5%      |
+| 3          | 36.64     | 32.40 | +11.6%      |
+| 6          | 39.75     | 36.57 | +8.0%       |
+| 12         | 42.41     | 49.33 | -16.3%      |
+
+## Soft vs hard association (two crossing targets, light clutter)
+
+| assoc | OSPA  | OSPA loc | OSPA card | false trk/scan | coverage |
+|-------|-------|----------|-----------|----------------|----------|
+| GNN   | 28.73 | 14.70    | 16.14     | 0.21           | 0.948    |
+| JPDA  | 39.55 | 13.76    | 29.86     | 0.56           | 0.945    |
+
+## Association quality vs clutter density
+
+| false alarms/scan | GNN OSPA | JPDA OSPA | better | JPDA coverage | JPDA clusters over the size limit | JPDA s |
+|-------------------|----------|-----------|--------|---------------|-----------------------------------|--------|
+| 2                 | 41.72    | 49.68     | GNN    | 0.908         | 2%                                | 0.30   |
+| 8                 | 31.92    | 34.39     | GNN    | 0.887         | 3%                                | 0.63   |
+| 20                | 34.17    | 37.98     | GNN    | 0.853         | 4%                                | 2.10   |
+| 40                | 38.33    | 41.89     | GNN    | 0.816         | 3%                                | 5.13   |
+| 80                | 49.09    | 47.75     | JPDA   | 0.737         | 2%                                | 17.08  |
+
+## Sensitivity to detection probability (JPDA, 8 false alarms/scan)
+
+| Pd   | OSPA  | OSPA loc | OSPA card | coverage |
+|------|-------|----------|-----------|----------|
+| 0.99 | 38.35 | 17.95    | 26.64     | 0.911    |
+| 0.90 | 34.39 | 17.69    | 20.55     | 0.887    |
+| 0.80 | 41.81 | 19.98    | 28.23     | 0.832    |
+| 0.60 | 55.25 | 17.33    | 44.88     | 0.657    |
+
+## JPDA cost vs target count (15 false alarms/scan)
+
+| targets | largest cluster | events/cluster | fallbacks | seconds |
+|---------|-----------------|----------------|-----------|---------|
+| 2       | 23              | 14.1           | 48        | 0.61    |
+| 4       | 24              | 13.5           | 62        | 0.65    |
+| 6       | 28              | 9.1            | 61        | 0.81    |
+| 8       | 31              | 12.6           | 80        | 1.03    |
+| 10      | 30              | 4.6            | 87        | 1.21    |
