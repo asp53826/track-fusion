@@ -5,14 +5,20 @@ motion models, joint probabilistic data association, sequential track scoring,
 and OSPA-based evaluation that charges you for losing a target in the same
 units it charges you for misplacing one.
 
+[![CI](https://github.com/asp53826/track-fusion/actions/workflows/ci.yml/badge.svg)](https://github.com/asp53826/track-fusion/actions/workflows/ci.yml)
+![Python 3.11+](https://img.shields.io/badge/python-3.11+-3776AB?style=flat-square&logo=python&logoColor=white)
+![Runtime dependencies](https://img.shields.io/badge/runtime_dependencies-2-2ea44f?style=flat-square)
+![Tests](https://img.shields.io/badge/tests-67-6f42c1?style=flat-square)
+[![License: MIT](https://img.shields.io/badge/license-MIT-f5c518?style=flat-square)](LICENSE)
+
 A tracker is three problems wearing a trenchcoat — estimate where a target is,
 decide which measurement belongs to which target, and decide which targets
 exist at all. The third one is where trackers actually fail, and it's the one
 that gets left out of tracking demos.
 
 ```bash
-pip install -r requirements-dev.txt
-pytest                              # 67 tests
+python -m pip install -e '.[dev]'
+python -m pytest -q                 # 67 tests
 python bench/benchmark.py           # every table below, ~6 minutes
 python bench/benchmark.py --quick   # a faster sanity check
 ```
