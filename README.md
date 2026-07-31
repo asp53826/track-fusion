@@ -11,6 +11,20 @@ units it charges you for misplacing one.
 ![Tests](https://img.shields.io/badge/tests-67-6f42c1?style=flat-square)
 [![License: MIT](https://img.shields.io/badge/license-MIT-f5c518?style=flat-square)](LICENSE)
 
+## Verification launch kit
+
+| Inspect | Published evidence |
+|---|---|
+| Strongest result | IMM lowers localization error **47%** inside the configured bank's useful turn-rate band |
+| Verification | Paired seeds, OSPA localization/cardinality decomposition, analytic checks, and parameter sweeps |
+| Failure boundary | The bank loses at 0 and 12 degrees/s; JPDA improves crossing localization while sustaining 2.7x false tracks |
+| Reproduce | `python -m pytest -q && python bench/benchmark.py --quick` |
+| Interactive replay | [Replay the maneuver and crossing](https://asp53826.github.io/#theater) |
+
+> Evidence contract: localization alone is not tracker quality. OSPA keeps the
+> existence error visible when soft association preserves marginal clutter
+> tracks.
+
 A tracker is three problems wearing a trenchcoat — estimate where a target is,
 decide which measurement belongs to which target, and decide which targets
 exist at all. The third one is where trackers actually fail, and it's the one
