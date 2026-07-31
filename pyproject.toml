@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "track-fusion"
+version = "0.1.0"
+description = "Multi-target tracking with IMM estimation, JPDA association, sequential track scoring, and OSPA evaluation"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+dependencies = [
+  "numpy>=1.26",
+  "scipy>=1.11",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[tool.setuptools.packages.find]
+include = ["tf", "tf.*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
